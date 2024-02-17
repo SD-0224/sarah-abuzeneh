@@ -81,6 +81,7 @@ header.flex-center-between {
         color: var(--brand-primary);
         font-size: 1.6rem;
         font-weight: 400;
+        cursor: pointer;
     }
 
     >div {
