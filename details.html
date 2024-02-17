@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="details-style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/94c3cf904d.js" crossorigin="anonymous"></script>
+
+    <title>Details</title>
+</head>
+
+<body>
+    <header class="flex-center-between">
+        <h1>Web Topics</h1>
+        <div>
+            <div class="buttons flex-center">
+                <input type="checkbox" id="mode-switch">
+                <label for="mode-switch">
+                    <div class="flex-center">
+                        <img src="./assets/moon-outline.svg" alt="Dark Mood" />
+                    </div>
+                </label>
+            </div>
+            <div class="buttons flex-center">
+                <input type="checkbox" id="modeswitch">
+                <label for="modeswitch">
+                    <div class="flex-center">
+                        <img src="./assets/heart-outline.svg" alt="Favorites" />
+                    </div>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="triangle-heading-section">
+            <div class="triangles">
+                <div class="left-triangle"></div>
+                <div class="right-triangle"></div>
+            </div>
+            <div class="headings-content">
+                <h1>
+                    Welcome to our website!
+                </h1>
+                <p>We have a new design that's fresh, modern, and easy to use.</p>
+            </div>
+        </section>
+        <section class="article-details">
+            <div class="content-wrapper">
+                <header>
+                    <h3 class="hidden-overflow">Web Development Language</h3>
+                    <h2>HTML</h2>
+                </header>
+                <div class="stars-rating" title="rating">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <p>
+                    The HyperText Markup Language or HTML is the standard markup language for documents designed to be
+                    displayed
+                    in a web browser. It defines the content and structure of web content. It is often assisted by
+                    technologies
+                    such as Cascading Style Sheets and scripting languages such as JavaScript.
+                </p>
+            </div>
+            <div>
+                <div class="topic-image"></div>
+                <p><span>HTML</span> By <a>Sarah Smith</a></p>
+                <div class="add-to-favorite">
+                    Interested about this topic?
+                    <button> Add to Favorite
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
