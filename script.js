@@ -7,6 +7,7 @@ modeToggleBtn.addEventListener('click', () => {
 });
 
 favoriteToggleBtn.addEventListener('click', () => {
+    console.log("hi");
     if (favoritesArticlesContainer.style.display === 'none') {
         favoritesArticlesContainer.style.display = 'flex';
     } else {
