@@ -110,6 +110,8 @@ ion-icon {
 .topic-title {
     font-weight: 700;
     font-size: 1.2em;
+    -webkit-line-clamp: 2;
+    height: fit-content;
 }
 
 .topic-image {
@@ -334,9 +336,11 @@ section.web-development-cards {
                 border-radius: 1rem;
                 box-shadow: 0px 0px 5px 0px var(--lines-color);
                 padding: 0rem 0rem 1rem;
-                height: 20rem;
+                height: fit-content;
                 grid-column: span 10;
                 background-color: var(--bg_default);
+                display: flex;
+                flex-direction: column;
 
 
 
@@ -345,7 +349,7 @@ section.web-development-cards {
                 }
 
                 >header {
-                    margin: 1rem 0rem 2rem;
+                    margin: 1rem 0rem 1rem;
                     width: 100%;
                     overflow: hidden;
                     color: var(--body-text);
@@ -421,7 +425,7 @@ footer.footer {
             scroll-snap-align: start;
 
             .stars-rating {
-                padding: 0 0rem 1rem 1rem;
+                padding: 0rem 1rem 1rem;
             }
 
             .topic-title {
