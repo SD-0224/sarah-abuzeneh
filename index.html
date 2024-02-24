@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,700&display=swap"
         rel="stylesheet">
@@ -16,24 +18,14 @@
 
 <body>
     <header class="flex-center-between">
-        <h1>Web Topics</h1>
-        <div>
-            <div class="buttons flex-center">
-                <input type="checkbox" id="mode-switch">
-                <label for="mode-switch">
-                    <div class="flex-center">
-                        <img src="./assets/moon-outline.svg" alt="Dark Mood" />
-                    </div>
-                </label>
-            </div>
-            <div class="buttons flex-center">
-                <input type="checkbox" id="modeswitch">
-                <label for="modeswitch">
-                    <div class="flex-center">
-                        <img src="./assets/heart-outline.svg" alt="Favorites" />
-                    </div>
-                </label>
-            </div>
+        <h1> <a href="./details.html">Web Topics</a></h1>
+        <div class="action-wrapper">
+            <button id="mode-toggle" class="flex-center">
+                <ion-icon name="moon-outline"></ion-icon><span>Dark Mode</span>
+            </button>
+            <button class="flex-center">
+                <ion-icon name="heart-outline"></ion-icon></ion-icon><span>Favorite</span>
+            </button>
         </div>
     </header>
 
@@ -54,30 +46,32 @@
             <div class="filtering-content">
                 <div class="search-wrapper">
                     <div class="flex-align-center">
-                        <img class="icon" src="./assets/search-outline.svg" alt="Search" />
+                        <ion-icon name="search-outline"></ion-icon>
                         <input type="text" placeholder="Search the website..." />
                     </div>
                 </div>
                 <div class="drop-down-wrapper">
-                    <p>Sort by:</p>
-                    <div class="flex-center-between">
-                        <p>Default</p>
-                        <button id="filterBy">
-                            <img class="icon" src="./assets/chevron-down-outline.svg" alt="drop down arrow" />
-                        </button>
-                    </div>
+                    <label for="filter">Filter by
+                    </label>
+                    <select name="filter" id="filter">
+                        <option value="volvo">Default</option>
+                        <option value="saab">Option2</option>
+                        <option value="mercedes">Option3</option>
+                        <option value="audi">Option4</option>
+                    </select>
                 </div>
                 <div class="drop-down-wrapper">
-                    <p>Filter by:</p>
-                    <div class="flex-center-between">
-                        <p>Default</p>
-                        <button id="filterBy">
-                            <img class="icon" src="./assets/chevron-down-outline.svg" alt="drop down arrow" />
-                        </button>
-                    </div>
+                    <label for="deafult">Filter by
+                    </label>
+                    <select name="deafult" id="deafult">
+                        <option value="volvo">Default</option>
+                        <option value="saab">Option2</option>
+                        <option value="mercedes">Option3</option>
+                        <option value="audi">Option4</option>
+                    </select>
                 </div>
             </div>
-            <div class="topics-wrapper">
+            <div class="articles-wrapper">
                 <header>
                     <h2>"24" Web Topics Found</h2>
                 </header>
@@ -89,9 +83,8 @@
                         </div>
                         <header>
                             <h3 class="topic-subtitle hidden-overflow">Web development languageWe b development language
-                                </h2>
-                                <h2 class="topic-title hidden-overflow">CSS
                             </h3>
+                            <h2 class="topic-title hidden-overflow">CSS</h2>
                         </header>
                         <div class="stars-rating" title="rating" a-regular fa-star star"></i>
                             <i class="fa-regular fa-star"></i>
@@ -110,9 +103,8 @@
                         </div>
                         <header>
                             <h3 class="topic-subtitle hidden-overflow">Web development languageWe b development language
-                                </h2>
-                                <h2 class="topic-title hidden-overflow">CSS
                             </h3>
+                            <h2 class="topic-title hidden-overflow">CSS</h2>
                         </header>
                         <div class="stars-rating" title="rating" a-regular fa-star star"></i>
                             <i class="fa-regular fa-star"></i>
@@ -131,9 +123,8 @@
                         </div>
                         <header>
                             <h3 class="topic-subtitle hidden-overflow">Web development languageWe b development language
-                                </h2>
-                                <h2 class="topic-title hidden-overflow">CSS
                             </h3>
+                            <h2 class="topic-title hidden-overflow">CSS</h2>
                         </header>
                         <div class="stars-rating" title="rating">
                             <i class="fa-regular fa-star star"></i>
@@ -214,6 +205,8 @@
             </div>
         </section>
     </main>
-    <footer class="footer">Developed with <i class="fas fa-heart"></i> &copy; 2023</footer>
+    <footer class="footer">Developed with <ion-icon name="heart"></ion-icon> &copy; 2023</footer>
+    <script src="./script.js"></script>
 </body>
+
 </html>
