@@ -57,14 +57,14 @@ header>h1 {
             }
 
             h2 {
-                color: var(--body-text);
                 font-size: 1.3em;
+                color: white;
             }
         }
 
         p,
         h2 {
-            color: var(--body-text);
+            color: white;
         }
 
         p {
