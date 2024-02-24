@@ -36,7 +36,7 @@ header>h1 {
     width: 100%;
     height: fit-content;
     padding: 1rem;
-    background-color: var(--body-text);
+    background-color: #333333;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -57,13 +57,14 @@ header>h1 {
             }
 
             h2 {
+                color: var(--body-text);
                 font-size: 1.3em;
             }
         }
 
         p,
         h2 {
-            color: var(--bg_body);
+            color: var(--body-text);
         }
 
         p {
@@ -83,7 +84,7 @@ header>h1 {
         >div {
             border: 1px solid var(--lines-color);
             padding: 1px;
-            background-color: var(--bg_default);
+            background-color: white;
             display: flex;
             flex-direction: column;
             height: fit-content;
@@ -154,9 +155,9 @@ header>h1 {
                 }
 
                 h5 {
-                    color: var(--body-text);
+                    color: #747272;
                     font-size: .6em;
-                    font-weight: 300;
+                    font-weight: 400;
                     text-align: center;
                     margin-top: .3rem;
                 }
@@ -176,6 +177,7 @@ header>h1 {
     border-radius: .6rem;
     background-color: var(--bg_default);
     order: 2;
+    color: var(--body-text);
 
     >*,
     .topics-wrapper>* {
@@ -183,7 +185,6 @@ header>h1 {
         display: flex;
         flex-direction: row;
         border-bottom: 1px solid var(--lines-color);
-
     }
 
     .topics-wrapper {
@@ -202,6 +203,7 @@ header>h1 {
             h2 {
                 font-size: clamp(0.8rem, 3vw, 1.125rem);
                 font-weight: 500;
+                color: var(--body-text);
             }
 
         }
@@ -231,7 +233,6 @@ header>h1 {
     .article-details {
         width: 100%;
         height: 20rem;
-        background-color: var(--body-text);
         position: relative;
         padding: 2rem;
         justify-content: flex-end;
@@ -246,7 +247,7 @@ header>h1 {
                 width: 100%;
                 margin-bottom: 16%;
 
-                p{
+                p {
                     -webkit-line-clamp: 5;
                 }
             }
@@ -256,11 +257,10 @@ header>h1 {
             margin-top: 2rem;
             width: 20rem;
             position: absolute;
-            border: 1px solid aqua;
             right: 4rem;
             top: 1rem;
             justify-self: flex-end;
-            
+
             >div {
                 width: 100%;
             }
