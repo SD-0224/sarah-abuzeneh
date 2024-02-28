@@ -32,23 +32,28 @@ header>h1 {
     font-weight: 700 !important
 }
 
-.article-details {
+.style {
+    max-width: 75%;
+    margin-inline: auto;
+    height: 100%;
+}
+
+.content-wrapper {
     width: 100%;
-    height: fit-content;
-    padding: 1rem;
-    background-color: #333333;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+}
+
+.article-details {
+    width: 100%;
+    background-color: #333333;
+    padding: 1rem;
+
+    >div {
+        width: 100%;
+    }
 
     .content-wrapper {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        order: 1;
-
         .heading-content {
             h3 {
                 color: var(--brand-secondary);
@@ -77,9 +82,9 @@ header>h1 {
     }
 
     .topic-card {
-        align-self: center;
         width: 80%;
-        order: 3;
+        margin-inline: auto;
+        margin-top: 1rem;
 
         >div {
             border: 1px solid var(--lines-color);
@@ -87,7 +92,6 @@ header>h1 {
             background-color: white;
             display: flex;
             flex-direction: column;
-            height: fit-content;
 
             .topic-image {
                 width: 100%;
@@ -138,19 +142,17 @@ header>h1 {
                     background-color: var(--brand-secondary);
                     border: none;
                     outline: none;
-                    height: fit-content;
                     font-weight: 300;
                     font-size: .8em;
                     padding: .6rem;
                     margin-top: .4rem;
                     color: var(--bg_default);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    margin-inline: auto;
 
                     >ion-icon {
                         margin-left: 4.8px;
                         font-size: 1.4em;
+                        vertical-align: text-bottom;
                     }
                 }
 
@@ -163,28 +165,33 @@ header>h1 {
                 }
             }
         }
-
-
     }
+}
+
+section.topics-container {
+    padding: 1rem;
+    background-color: var(--bg_body);
 }
 
 .subject-topics {
     width: 100%;
-    margin: 1rem 0rem;
-    display: flex;
-    flex-direction: column;
-    border: 1pz solid var(--lines-color);
+    margin-inline: auto;
+    border: 1px solid var(--lines-color);
     border-radius: .6rem;
     background-color: var(--bg_default);
-    order: 2;
     color: var(--body-text);
+    >div{
+        border-radius: .6rem;
+    }
+
+    div + div {
+        border-top: 1px solid var(--lines-color);
+    }
 
     >*,
     .topics-wrapper>* {
-        background-color: var(--bg_default);
         display: flex;
         flex-direction: row;
-        border-bottom: 1px solid var(--lines-color);
     }
 
     .topics-wrapper {
@@ -215,57 +222,56 @@ header>h1 {
 
 }
 
-@media screen and (min-width: 600px) {
+
+@media screen and (min-width: 750px) {
+
+    .article-details,
+    .topics-container {
+
+        >div {
+            max-width: 75%;
+            display: flex;
+            margin-inline: auto;
+            flex-direction: row;
+        }
+    }
+
     .article-details {
+        .content-wrapper {
+            p {
+                -webkit-line-clamp: 5;
+            }
+        }
+    }
+
+    .content-wrapper, .subject-topics {
+        max-width: 75%;
+        margin-top: 1rem;
+    }
+
+    .subject-topics {
+        div {
+            display: flex;
+        }
+    }
+
+    .topic-card {
+        margin-top: 2rem;
+        width: 20rem !important;
+        position: relative;
+
+        >div {
+            position: absolute;
+            left: 1rem;
+            width: 100%;
+        }
+    }
+
+    section.topics-container {
         padding: 1rem;
 
-        .content-wrapper {
-            width: 50%;
-        }
-
-        .topic-card {
-            width: 20rem;
+        >div {
+            display: flex;
         }
     }
-}
-
-@media screen and (min-width: 600px) {
-    .article-details {
-        width: 100%;
-        height: 20rem;
-        position: relative;
-        padding: 2rem;
-        justify-content: flex-end;
-
-        .wrapper-left-flow {
-            position: absolute;
-            top: 2rem;
-            width: 40%;
-            left: 4rem;
-
-            .content-wrapper {
-                width: 100%;
-                margin-bottom: 16%;
-
-                p {
-                    -webkit-line-clamp: 5;
-                }
-            }
-        }
-
-        .topic-card {
-            margin-top: 2rem;
-            width: 20rem;
-            position: absolute;
-            right: 4rem;
-            top: 1rem;
-            justify-self: flex-end;
-
-            >div {
-                width: 100%;
-            }
-        }
-    }
-
-
 }
