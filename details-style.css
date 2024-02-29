@@ -95,6 +95,7 @@ header>h1 {
             padding: 1px;
             background-color: white;
             display: flex;
+            height: 21rem;
             flex-direction: column;
 
             .topic-image {

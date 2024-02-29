@@ -6,22 +6,20 @@ const creatingDetailsPageItems = async () => {
     const api = 'https://tap-web-1.herokuapp.com/topics';
     const topicData = await fetchCertainTopic(api, topicId);
 
-    createTopicCard();
-
-    console.log(topicData)
-
+    createTopicCard(topicData);
+    createListHTMLStructure(topicData.subtopics, topicData.topic);
 }
 
-const createHeadingContent = () => {
+const createHeadingContent = (category, topic) => {
     const headingContentDiv = document.createElement('div');
-    headingContentDiv.classList.add('heading-content');
-
     const headingCategory = document.createElement('h3');
-    headingCategory.classList.add('hidden-overflow');
-    headingCategory.textContent = 'Web Development Language';
-
     const headingTitle = document.createElement('h2');
-    headingTitle.textContent = 'HTML';
+
+    headingContentDiv.classList.add('heading-content');
+    headingCategory.classList.add('hidden-overflow');
+
+    headingCategory.textContent = category;
+    headingTitle.textContent = topic;
 
     headingContentDiv.appendChild(headingCategory);
     headingContentDiv.appendChild(headingTitle);
@@ -29,27 +27,22 @@ const createHeadingContent = () => {
     return headingContentDiv;
 };
 
-const createParagraph = () => {
+const createParagraph = (description) => {
     const paragraph = document.createElement('p');
 
     paragraph.classList.add('line-clamp');
-    paragraph.textContent = `The HyperText Markup Language or HTML is the standard markup language for documents designed to
-                        be
-                        displayed
-                        in a web browser. It defines the content and structure of web content. It is often assisted by
-                        technologies
-                        such as Cascading Style Sheets and scripting languages such as JavaScript.`;
+    paragraph.textContent = description;
 
     return paragraph;
 };
 
-const createContentWrapper = () => {
+const createContentWrapper = (topicData) => {
     const contentWrapperDiv = document.createElement('div');
-    contentWrapperDiv.classList.add('content-wrapper', 'style');
-
-    const headingContent = createHeadingContent();
+    const headingContent = createHeadingContent(topicData.category, topicData.topic);
     const starsRating = createStarRating();
-    const paragraph = createParagraph();
+    const paragraph = createParagraph(topicData.description);
+
+    contentWrapperDiv.classList.add('content-wrapper', 'style');
 
     contentWrapperDiv.appendChild(headingContent);
     contentWrapperDiv.appendChild(starsRating);
@@ -59,24 +52,23 @@ const createContentWrapper = () => {
 };
 
 
-const createTopicImage = () => {
+const createTopicImage = (imagePath, topic) => {
     const topicImageDiv = document.createElement('div');
     const topicImage = document.createElement('img');
 
     topicImageDiv.classList.add('topic-image');
 
-    topicImage.src = './assets/websockets.png';
-    topicImage.alt = 'websockets';
-    topicImage.srcset = './assets/websockets.png';
+    topicImage.src = `./Logos/${imagePath}`;
+    topicImage.alt = topic;
 
     topicImageDiv.appendChild(topicImage);
 
     return topicImageDiv;
 };
 
-const createTopicInfo = () => {
+const createTopicInfo = (topicData) => {
     const topicInfoDiv = document.createElement('div');
-    const topicInfoParagraph = createTopicInfoParagraph();
+    const topicInfoParagraph = createTopicInfoParagraph(topicData.topic, topicData.name);
     const addToFavoriteContainerDiv = createAddToFavoriteContainer();
 
     topicInfoDiv.classList.add('topic-info');
@@ -87,14 +79,14 @@ const createTopicInfo = () => {
     return topicInfoDiv;
 };
 
-const createTopicInfoParagraph = () => {
+const createTopicInfoParagraph = (topic, name) => {
     const topicInfoParagraph = document.createElement('p');
     const topicInfoSpan = document.createElement('span');
     const topicInfoBy = document.createTextNode(' By ');
     const topicInfoAuthor = document.createElement('a');
 
-    topicInfoSpan.textContent = 'HTML';
-    topicInfoAuthor.textContent = 'Sarah Smith';
+    topicInfoSpan.textContent = topic;
+    topicInfoAuthor.textContent = name;
 
     topicInfoParagraph.appendChild(topicInfoSpan);
     topicInfoParagraph.appendChild(topicInfoBy);
@@ -125,11 +117,11 @@ const createAddToFavoriteContainer = () => {
     return addToFavoriteContainerDiv;
 };
 
-const createTopicCard = () => {
+const createTopicCard = (topicData) => {
     const articleDetailsSection = document.getElementsByClassName('article-details')[0];
     const containerDiv = document.createElement('div');
-    const contentWrapper = createContentWrapper();
-    const topicCardDiv = createTopicCardInnerDiv();
+    const contentWrapper = createContentWrapper(topicData);
+    const topicCardDiv = createTopicCardInnerDiv(topicData);
 
     containerDiv.appendChild(contentWrapper);
     containerDiv.appendChild(topicCardDiv);
@@ -138,21 +130,127 @@ const createTopicCard = () => {
     return articleDetailsSection;
 };
 
-const createTopicCardInnerDiv = () => {
+const createTopicCardInnerDiv = (topicData) => {
     const topicCardInnerDiv = document.createElement('div');
+    const innerWrapperDiv = document.createElement('div');
+    const topicImageDiv = createTopicImage(topicData.image, topicData.topic);
+    const topicInfoDiv = createTopicInfo(topicData);
+
     topicCardInnerDiv.classList.add('topic-card');
 
-    const innerWrapperDiv = document.createElement('div'); 
-    topicCardInnerDiv.appendChild(innerWrapperDiv); 
-
-    const topicImageDiv = createTopicImage();
-    const topicInfoDiv = createTopicInfo();
-
-    innerWrapperDiv.appendChild(topicImageDiv); 
-    innerWrapperDiv.appendChild(topicInfoDiv); 
+    topicCardInnerDiv.appendChild(innerWrapperDiv);
+    innerWrapperDiv.appendChild(topicImageDiv);
+    innerWrapperDiv.appendChild(topicInfoDiv);
 
     return topicCardInnerDiv;
 };
 
 
+const createContainer = () => {
+    const containerDiv = document.createElement('div');
+
+    containerDiv.classList.add('container');
+
+    return containerDiv;
+};
+
+const createSubjectHeading = (subjectTopic) => {
+    const heading = document.createElement('h2');
+
+    heading.textContent = subjectTopic;
+
+    return heading;
+};
+
+const createTopicListItem = (content) => {
+    const listItem = document.createElement('li');
+    const icon = document.createElement('ion-icon');
+    const topicTitle = document.createElement('h2');
+
+    listItem.classList.add('topic', 'border-bottom');
+
+    icon.setAttribute('name', 'checkmark-circle-outline');
+
+    topicTitle.textContent = content;
+
+    listItem.appendChild(icon);
+    listItem.appendChild(topicTitle);
+
+    return listItem;
+};
+
+const createTopicsList = (subTopics) => {
+    const topicsList = document.createElement('ul');
+
+    topicsList.classList.add('topics-wrapper');
+
+    for (let i = 0; i < subTopics.length; i++) {
+        const listItem = createTopicListItem(subTopics[i]);
+        topicsList.appendChild(listItem);
+    }
+
+    return topicsList;
+};
+
+const createSubjectTopicsSection = (subTopics, topic) => {
+    const subjectTopicsDiv = document.createElement('div');
+    const heading = createSubjectHeading(topic);
+    const topicsList = createTopicsList(subTopics);
+
+    subjectTopicsDiv.classList.add('subject-topics', 'style');
+
+    subjectTopicsDiv.appendChild(heading);
+    subjectTopicsDiv.appendChild(topicsList);
+
+    return subjectTopicsDiv;
+};
+
+const createEmptyTopicCard = () => {
+    const topicCardDiv = document.createElement('div');
+
+    topicCardDiv.classList.add('topic-card');
+
+    return topicCardDiv;
+};
+
+const createListHTMLStructure = (subTopics, topic) => {
+    const topicsContainer = document.getElementsByClassName('topics-container')[0];
+    const container = createContainer();
+    const subjectTopicsSection = createSubjectTopicsSection(subTopics, topic);
+    const emptyTopicCard = createEmptyTopicCard();
+
+    container.appendChild(subjectTopicsSection);
+    container.appendChild(emptyTopicCard);
+
+    topicsContainer.appendChild(container);
+
+    return;
+};
+
 export { creatingDetailsPageItems }
+
+
+// category
+// :
+// "Frontend Frameworks and Libraries"
+// description
+// :
+// "React is a popular, open-source, and declarative front-end JavaScript library for building user interfaces. It was developed by Facebook and has gained widespread adoption due to its component-based architecture, virtual DOM, and ease of use. React is often used in conjunction with other libraries and frameworks to create complex web applications."
+// id
+// :
+// 6
+// image
+// :
+// "react.webp"
+// name
+// :
+// "Daniel Brown"
+// rating
+// :
+// 3.79
+// subtopics
+// :
+// (8) ['React components and props', 'React state and lifecycle methods', 'React JSX and rendering', 'React events and handling', 'React hooks and functional components', 'React router and navigation', 'React Redux and state management', 'React testing and debugging']
+// topic
+// :
+// "React"
