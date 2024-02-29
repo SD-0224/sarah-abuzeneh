@@ -1,6 +1,5 @@
 const settingHeadingTopicCounter = (numberOfArticles) => {
     const headingCounter = document.getElementsByClassName('heading-counter')[0];
-    console.log(headingCounter)
 
     headingCounter.textContent = `"${numberOfArticles}" Web Topics Found`
 }
@@ -100,4 +99,4 @@ const createStarRating = () => {
     return starsRatingDiv;
 };
 
-export { creatingAllArticle, settingHeadingTopicCounter }
+export { creatingAllArticle, settingHeadingTopicCounter, createStarRating }

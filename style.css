@@ -71,7 +71,8 @@ body {
 button,
 a,
 select,
-option {
+option,
+article {
     cursor: pointer;
     outline: none;
 }

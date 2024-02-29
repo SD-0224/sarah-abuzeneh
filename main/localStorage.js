@@ -16,4 +16,6 @@ const getStorageData = (storageName) => {
     return JSON.parse(localStorage.getItem(storageName));
 }
 
+const deleteFromStorageById = () => {}
+
 export { savingToLocalStorage , checkIfStorageExist, getStorageData};
