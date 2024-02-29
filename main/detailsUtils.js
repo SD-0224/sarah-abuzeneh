@@ -47,14 +47,17 @@ const createContentWrapper = () => {
     const contentWrapperDiv = document.createElement('div');
     contentWrapperDiv.classList.add('content-wrapper', 'style');
 
-    contentWrapperDiv.appendChild(createHeadingContent());
-    contentWrapperDiv.appendChild(createStarRating());
-    contentWrapperDiv.appendChild(createParagraph());
+    const headingContent = createHeadingContent();
+    const starsRating = createStarRating();
+    const paragraph = createParagraph();
 
-    console.log(contentWrapperDiv)
+    contentWrapperDiv.appendChild(headingContent);
+    contentWrapperDiv.appendChild(starsRating);
+    contentWrapperDiv.appendChild(paragraph);
 
     return contentWrapperDiv;
 };
+
 
 const createTopicImage = () => {
     const topicImageDiv = document.createElement('div');
@@ -125,24 +128,31 @@ const createAddToFavoriteContainer = () => {
 const createTopicCard = () => {
     const articleDetailsSection = document.getElementsByClassName('article-details')[0];
     const containerDiv = document.createElement('div');
-    const topicCardDiv = document.createElement('div');
-    const topicCardInnerDiv = document.createElement('div');
-    const topicImageDiv = createTopicImage();
-    const topicInfoDiv = createTopicInfo();
+    const contentWrapper = createContentWrapper();
+    const topicCardDiv = createTopicCardInnerDiv();
 
-    topicCardDiv.classList.add('topic-card');
-    containerDiv.classList.add();
-
-    topicCardInnerDiv.appendChild(topicImageDiv);
-    topicCardInnerDiv.appendChild(topicInfoDiv);
-    topicCardDiv.appendChild(createContentWrapper());
-    topicCardDiv.appendChild(topicCardInnerDiv);
+    containerDiv.appendChild(contentWrapper);
     containerDiv.appendChild(topicCardDiv);
-
     articleDetailsSection.appendChild(containerDiv);
-
 
     return articleDetailsSection;
 };
+
+const createTopicCardInnerDiv = () => {
+    const topicCardInnerDiv = document.createElement('div');
+    topicCardInnerDiv.classList.add('topic-card');
+
+    const innerWrapperDiv = document.createElement('div'); 
+    topicCardInnerDiv.appendChild(innerWrapperDiv); 
+
+    const topicImageDiv = createTopicImage();
+    const topicInfoDiv = createTopicInfo();
+
+    innerWrapperDiv.appendChild(topicImageDiv); 
+    innerWrapperDiv.appendChild(topicInfoDiv); 
+
+    return topicCardInnerDiv;
+};
+
 
 export { creatingDetailsPageItems }
