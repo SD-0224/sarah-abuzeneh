@@ -32,6 +32,10 @@ header>h1 {
     font-weight: 700 !important
 }
 
+.border-bottom {
+    border-top: 1px solid var(--lines-color);
+}
+
 .style {
     max-width: 75%;
     margin-inline: auto;
@@ -180,12 +184,9 @@ section.topics-container {
     border-radius: .6rem;
     background-color: var(--bg_default);
     color: var(--body-text);
-    >div{
-        border-radius: .6rem;
-    }
 
-    div + div {
-        border-top: 1px solid var(--lines-color);
+    >div {
+        border-radius: .6rem;
     }
 
     >*,
@@ -202,9 +203,11 @@ section.topics-container {
             padding: 1rem 2rem;
 
             ion-icon {
-                font-size: 1.4em;
+                font-size: 1.4rem;
                 color: var(--brand-secondary);
+                flex-shrink: 0;
                 margin-right: 1rem;
+                /* margin: auto 1rem auto 0rem; */
             }
 
             h2 {
@@ -244,7 +247,8 @@ section.topics-container {
         }
     }
 
-    .content-wrapper, .subject-topics {
+    .content-wrapper,
+    .subject-topics {
         max-width: 75%;
         margin-top: 1rem;
     }
