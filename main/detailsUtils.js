@@ -1,13 +1,21 @@
 import { fetchCertainTopic } from "./api.js";
 import { createStarRating } from "./articleUtils.js";
+import { extractArticleId } from "./helper.js";
+import { addToStorage, checkIfStorageExist, savingToLocalStorage } from "./localStorage.js";
 
 const creatingDetailsPageItems = async () => {
     const topicId = new URLSearchParams(window.location.search).get("id");
-    const api = 'https://tap-web-1.herokuapp.com/topics';
-    const topicData = await fetchCertainTopic(api, topicId);
+    const topicData = await fetchTopic(topicId);
 
     createTopicCard(topicData);
     createListHTMLStructure(topicData.subtopics, topicData.topic);
+}
+
+const fetchTopic = async (topicId) => {
+    const api = 'https://tap-web-1.herokuapp.com/topics';
+    const topicData = await fetchCertainTopic(api, topicId);
+
+    return topicData;
 }
 
 const createHeadingContent = (category, topic) => {
@@ -52,14 +60,16 @@ const createContentWrapper = (topicData) => {
 };
 
 
-const createTopicImage = (imagePath, topic) => {
+const createTopicImage = (imageSrc, topic) => {
     const topicImageDiv = document.createElement('div');
     const topicImage = document.createElement('img');
 
     topicImageDiv.classList.add('topic-image');
 
-    topicImage.src = `./Logos/${imagePath}`;
     topicImage.alt = topic;
+    topicImage.title = topic;
+    topicImage.loading = 'lazy';
+    topicImage.src = `../Logos/${imageSrc}`;
 
     topicImageDiv.appendChild(topicImage);
 
@@ -69,7 +79,7 @@ const createTopicImage = (imagePath, topic) => {
 const createTopicInfo = (topicData) => {
     const topicInfoDiv = document.createElement('div');
     const topicInfoParagraph = createTopicInfoParagraph(topicData.topic, topicData.name);
-    const addToFavoriteContainerDiv = createAddToFavoriteContainer();
+    const addToFavoriteContainerDiv = createAddToFavoriteContainer(topicData.id);
 
     topicInfoDiv.classList.add('topic-info');
 
@@ -95,7 +105,7 @@ const createTopicInfoParagraph = (topic, name) => {
     return topicInfoParagraph;
 };
 
-const createAddToFavoriteContainer = () => {
+const createAddToFavoriteContainer = (id) => {
     const addToFavoriteContainerDiv = document.createElement('div');
     const addToFavoriteHeading = document.createElement('h4');
     const addToFavoriteButton = document.createElement('button');
@@ -104,10 +114,14 @@ const createAddToFavoriteContainer = () => {
 
     addToFavoriteContainerDiv.classList.add('add-to-favorite-container');
 
+    addToFavoriteButton.addEventListener('click', handleAddToFavoriteButtonClick);
+
     addToFavoriteHeading.textContent = 'Interested about this topic?';
-    addToFavoriteButton.textContent = 'Add to Favorite ';
+    addToFavoriteButton.textContent = 'Add to Favorite';
     unlimitedCredits.textContent = 'Unlimited Credits';
     icon.setAttribute('name', 'heart-outline');
+
+    addToFavoriteButton.id = `article-${id}`
 
     addToFavoriteButton.appendChild(icon);
     addToFavoriteContainerDiv.appendChild(addToFavoriteHeading);
@@ -226,6 +240,13 @@ const createListHTMLStructure = (subTopics, topic) => {
     topicsContainer.appendChild(container);
 
     return;
+};
+
+const handleAddToFavoriteButtonClick = async (event) => {
+    const articleId = extractArticleId(event.target.id);
+    const topicData = await fetchTopic(articleId);
+
+    addToStorage('favoriteArticles', topicData)
 };
 
 export { creatingDetailsPageItems }

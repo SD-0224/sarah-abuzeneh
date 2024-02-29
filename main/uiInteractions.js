@@ -1,4 +1,4 @@
-import { extractArticleNumber } from "./helper.js";
+import { extractArticleId } from "./helper.js";
 // import { creatingDetailsPageItems } from "./detailsUtils.js";
 
 const handleToggleDarkMode = () => {
@@ -27,17 +27,25 @@ const handleArticleClick = () => {
 
     articlesContainer.addEventListener('click', (event) => {
         const targetArticle = event.target.closest('article');
-        console.log(targetArticle)
 
         if (targetArticle) {
-            const articleId = extractArticleNumber(targetArticle.id);
+            const articleId = extractArticleId(targetArticle.id);
 
             window.location.href = `details.html?id=${articleId}`;
         }
     })
 }
 
-export { handleToggleDarkMode, handleToggleFavoriteContainer, handleArticleClick };
+const handleAddToFavorite = () => {
+    const item = document.querySelector('.add-to-favorite-container');
+
+    item.addEventListener('click', () => {
+        console.log(item)
+    })
+
+}
+
+export { handleToggleDarkMode, handleToggleFavoriteContainer, handleArticleClick, handleAddToFavorite };
 
 
 
