@@ -21,10 +21,8 @@ const addToStorage = (storageName, element) => {
     if (element) {
         const items = getStorageData(storageName) || [];
         const index = items.findIndex(item => item.id === element.id);
-        console.log(element)
 
         if (index === -1) {
-            ;
             items.push(element);
         } else {
             items.splice(index, 1);
