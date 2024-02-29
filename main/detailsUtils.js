@@ -184,10 +184,11 @@ const createTopicsList = (subTopics) => {
 
     topicsList.classList.add('topics-wrapper');
 
-    for (let i = 0; i < subTopics.length; i++) {
-        const listItem = createTopicListItem(subTopics[i]);
+    subTopics.forEach(topic => {
+        const listItem = createTopicListItem(topic);
+
         topicsList.appendChild(listItem);
-    }
+    });
 
     return topicsList;
 };
@@ -228,29 +229,3 @@ const createListHTMLStructure = (subTopics, topic) => {
 };
 
 export { creatingDetailsPageItems }
-
-
-// category
-// :
-// "Frontend Frameworks and Libraries"
-// description
-// :
-// "React is a popular, open-source, and declarative front-end JavaScript library for building user interfaces. It was developed by Facebook and has gained widespread adoption due to its component-based architecture, virtual DOM, and ease of use. React is often used in conjunction with other libraries and frameworks to create complex web applications."
-// id
-// :
-// 6
-// image
-// :
-// "react.webp"
-// name
-// :
-// "Daniel Brown"
-// rating
-// :
-// 3.79
-// subtopics
-// :
-// (8) ['React components and props', 'React state and lifecycle methods', 'React JSX and rendering', 'React events and handling', 'React hooks and functional components', 'React router and navigation', 'React Redux and state management', 'React testing and debugging']
-// topic
-// :
-// "React"
