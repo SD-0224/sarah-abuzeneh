@@ -1,5 +1,3 @@
-import { loadArticle } from "./loadingArticles.js";
-
 const savingToLocalStorage = (articlesData, storageName) => {
     const isArticlesExist = checkIfStorageExist(storageName);
 
